@@ -1,4 +1,7 @@
-﻿(function () {
+﻿/*
+Really simple script for polling and tracking messages received by this client.
+*/
+(function () {
     function poll(callback) {
         $.ajax({
             'url': '/messages/poll',
@@ -16,7 +19,7 @@
     function start(callback) {
         poll(function (messages) {
             for (var i in messages) {
-                var exists = currentMessages.some(function (msgGuid) {
+                var exists = currentMessagesGuids.some(function (msgGuid) {
                     return msgGuid === messages[i].Guid;
                 });
 
