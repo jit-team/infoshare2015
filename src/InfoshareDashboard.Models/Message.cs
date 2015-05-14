@@ -1,6 +1,6 @@
 using System;
 
-namespace Models
+namespace InfoshareDashboard.Models
 {
     public class Message
     {

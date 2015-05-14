@@ -1,5 +1,5 @@
 using Microsoft.AspNet.Mvc;
-using Models;
+using InfoshareDashboard.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,7 @@ namespace Controllers
         [HttpPost]
         public IActionResult Push([FromBody]Message message)
         {
+            Console.WriteLine(message.ToString());
             messages.Add(message);
             return new EmptyResult();
         }
