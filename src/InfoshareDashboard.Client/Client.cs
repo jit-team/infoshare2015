@@ -14,11 +14,11 @@ namespace InfoshareDashboard.Client
 
         private Listener _listener;
         
-        public Client(string url)
+        public Client(string serverUrl, int listenerPort, IHandler handler)
         {
-            this._url = url;
+            this._url = serverUrl;
             this._client = new HttpClient();
-            this._listener = new Listener(null, 8080);
+            this._listener = new Listener(handler, listenerPort);
             this._client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
