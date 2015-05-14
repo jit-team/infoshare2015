@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -15,10 +12,13 @@ namespace InfoshareDashboard.Client
         private HttpClient _client;
         private string _url;
 
+        private Listener _listener;
+        
         public Client(string url)
         {
             this._url = url;
             this._client = new HttpClient();
+            this._listener = new Listener(null, 8080);
             this._client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
