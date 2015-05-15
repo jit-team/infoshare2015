@@ -1,9 +1,8 @@
 {
     "version": "1.0.0-*",
     "dependencies": {
-        "Microsoft.Net.Http.Client": "1.0.0-*",
-        "Newtonsoft.Json": "6.0.8",
-        "InfoshareDashboard.Models": "1.0.0-*"
+        "InfoshareDashboard.Models": "1.0.0-*",
+        "InfoshareDashboard.Client": "1.0.0-*"
     },
     "commands": {
         "run": "run"
@@ -13,8 +12,7 @@
         "dnxcore50": {
             "dependencies": {
                 "System.Console": "4.0.0-beta-*",
-                "System.Net.Http": "4.0.0-beta-*",
-                "System.Runtime": "4.0.20-beta-*"
+                "System.Net.Http": "4.0.0-beta-*"
             }
         }
     }

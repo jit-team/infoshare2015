@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -13,16 +14,42 @@ namespace InfoshareDashboard.Client
         private readonly Socket _socket;
         private readonly NetworkStream _networkStream;
         private readonly MemoryStream _memoryStream = new MemoryStream();
-        private readonly Action<Models.Message> _handler;
+        private readonly Action<Request> _handler;
         private readonly StreamReader _streamReader;
         private readonly string _serverName = "Infoshare.AwesomeServer";
 
-        public RequestHandler(Socket socket, Action<Models.Message> handler)
+        public RequestHandler(Socket socket, Action<Request> handler)
         {
             _socket = socket;
+
             _handler = handler;
             _networkStream = new NetworkStream(socket, true);
             _streamReader = new StreamReader(_memoryStream);
+
+        }
+
+        private Request RequestOrigin()
+        {
+
+            var remoteIpEndPoint = _socket.RemoteEndPoint as IPEndPoint;
+            var localIpEndPoint = _socket.LocalEndPoint as IPEndPoint;
+
+            if (remoteIpEndPoint != null)
+            {
+                return new Request()
+                {
+                    Ip = remoteIpEndPoint.Address.ToString()
+                };
+            }
+            if (localIpEndPoint != null)
+            {
+                return new Request()
+                {
+                    Ip = localIpEndPoint.Address.ToString()
+                };
+            }
+
+            return null;
         }
 
         public async void Handle()
@@ -84,22 +111,27 @@ namespace InfoshareDashboard.Client
                     }
                 }
             }
+            var request = RequestOrigin();
+            request.Port = headers[Client.CLIENT_PORT_HEADER.ToLower()];
+            
             try
             {
                 var msg = JsonConvert.DeserializeObject<Models.Message>(content);
-                _handler?.Invoke(msg);
+                request.Message = msg;
+
                 Respond("200 OK");
             }
             catch (JsonReaderException jre)
             {
-                Console.WriteLine(jre);
+                Console.WriteLine(jre.Message);
                 Respond("400 BAD REQUEST");
             }
             catch (ArgumentNullException ane)
             {
-                Console.WriteLine(ane);
+                Console.WriteLine(ane.Message);
                 Respond("400 BAD REQUEST");
             }
+            _handler?.Invoke(request);
         }
 
 

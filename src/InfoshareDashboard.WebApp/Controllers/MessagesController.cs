@@ -7,7 +7,7 @@ namespace Controllers
 {
     static class MessagesBus
     {
-        static InfoshareDashboard.Client.Client client = new InfoshareDashboard.Client.Client("http://localhost:8080", 8080, message => messages.Add(message));
+        static InfoshareDashboard.Client.Client client = new InfoshareDashboard.Client.Client("http://localhost:8081", 8080, request => messages.Add(request.Message));
         public static readonly List<Message> messages = new List<Message>();
     }
 

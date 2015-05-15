@@ -11,9 +11,9 @@ namespace InfoshareDashboard.Client
         private readonly TcpListener _tcpListener;
         private readonly Task _listenTask;
 
-        private readonly Action<Models.Message> _handler;
+        private readonly Action<Request> _handler;
 
-        public Listener(Action<Models.Message> handler, int port)
+        public Listener(Action<Request> handler, int port)
         {
             Port = port;
 
