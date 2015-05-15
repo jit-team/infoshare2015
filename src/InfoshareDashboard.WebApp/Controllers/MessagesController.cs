@@ -18,7 +18,16 @@ namespace Controllers
         [HttpGet]
         public IEnumerable<InfoshareDashboard.Models.Message> Get()
         {
-            return MessagesBus.messages.Where(msg => DateTime.Now.Subtract(msg.Created).Seconds < 5);
+            return MessagesBus.messages
+            .OrderByDescending(f => f.Created);
+        }
+
+        [HttpGet("{guid}")]
+        public IEnumerable<InfoshareDashboard.Models.Message> Get(string guid)
+        {
+            return MessagesBus.messages
+            .OrderByDescending(f => f.Created)
+            .TakeWhile(message => message.Guid.ToString() != guid);
         }
 
         [HttpPost]

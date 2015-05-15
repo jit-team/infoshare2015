@@ -1,10 +1,17 @@
 ﻿/*
 Really simple script for polling and tracking messages received by this client.
 */
-(function () {
+(function () {    
+    //For tracking messages on this client
+    var currentMessagesGuids = [];
+    function lastIdOrEmptyString(){
+        var last = currentMessagesGuids[currentMessagesGuids.length - 1];
+        return last === undefined ? '' : last;
+    }
+
     function poll(callback) {
         $.ajax({
-            'url': '/messages/',
+            'url': '/messages/' + lastIdOrEmptyString(),
         }).done(function (result) {
             callback(result);
             setTimeout(function () {
@@ -13,8 +20,6 @@ Really simple script for polling and tracking messages received by this client.
         });
     }
 
-    //For tracking messages on this client
-    var currentMessagesGuids = [];
 
     function start(callback) {
         poll(function (messages) {
