@@ -84,7 +84,7 @@ namespace InfoshareDashboard.Client
                     }
                 }
             }
-           
+
             _handler?.Received(JsonConvert.DeserializeObject<Models.Message>(content));
 
             Respond();

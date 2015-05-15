@@ -8,6 +8,8 @@ namespace Controllers
     public class MessagesController : Controller
     {
         static List<Message> messages = new List<Message>();
+        
+        InfoshareDashboard.Client.Client client = new InfoshareDashboard.Client.Client("http://localhost:8080"); 
 
         public IActionResult Poll()
         {

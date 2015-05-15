@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -20,7 +21,9 @@ namespace InfoshareDashboard.Client
             _tcpListener = new TcpListener(IPAddress.Any, Port);
             _tcpListener.Start();
             _handler = handler;
-
+            
+            Console.WriteLine($"Starting listening on {Port}");
+            
             // Start a background thread to listen for incoming
             _listenTask = Task.Factory.StartNew(() => ListenLoop());
         }
