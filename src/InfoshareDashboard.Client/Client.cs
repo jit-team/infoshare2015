@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -14,7 +15,7 @@ namespace InfoshareDashboard.Client
 
         private Listener _listener;
         
-        public Client(string serverUrl, int listenerPort, IHandler handler)
+        public Client(string serverUrl, int listenerPort, Action<Models.Message> handler)
         {
             this._url = serverUrl;
             this._client = new HttpClient();

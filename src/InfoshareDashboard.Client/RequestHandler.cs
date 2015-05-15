@@ -13,11 +13,11 @@ namespace InfoshareDashboard.Client
         private readonly Socket _socket;
         private readonly NetworkStream _networkStream;
         private readonly MemoryStream _memoryStream = new MemoryStream();
-        private readonly IHandler _handler;
+        private readonly Action<Models.Message> _handler;
         private readonly StreamReader _streamReader;
         private readonly string _serverName = "Infoshare.AwesomeServer";
 
-        public RequestHandler(Socket socket, IHandler handler)
+        public RequestHandler(Socket socket, Action<Models.Message> handler)
         {
             _socket = socket;
             _handler = handler;
@@ -84,16 +84,27 @@ namespace InfoshareDashboard.Client
                     }
                 }
             }
-
-            _handler?.Received(JsonConvert.DeserializeObject<Models.Message>(content));
-
-            Respond();
+            try
+            {
+                var msg = JsonConvert.DeserializeObject<Models.Message>(content);
+                _handler?.Invoke(msg);
+                Respond("200 OK");
+            }
+            catch (JsonReaderException jre)
+            {
+                Console.WriteLine(jre);
+                Respond("400 BAD REQUEST");
+            }
+            catch (ArgumentNullException ane)
+            {
+                Console.WriteLine(ane);
+                Respond("400 BAD REQUEST");
+            }
         }
 
 
-        private async void Respond()
+        private async void Respond(string responseCode)
         {
-            string responseCode = "200 OK";
             string contentType = "";
 
             string header = string.Format("HTTP/1.1 {0}\r\n"
