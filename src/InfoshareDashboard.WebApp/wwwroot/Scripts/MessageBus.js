@@ -4,7 +4,7 @@ Really simple script for polling and tracking messages received by this client.
 (function () {
     function poll(callback) {
         $.ajax({
-            'url': '/messages/poll',
+            'url': '/messages/',
         }).done(function (result) {
             callback(result);
             setTimeout(function () {
@@ -33,7 +33,6 @@ Really simple script for polling and tracking messages received by this client.
     }
 
     window.MessageBus = {
-        messages: function () { return currentMessages; },
         start: start
     }
 })();
