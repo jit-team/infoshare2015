@@ -8,7 +8,7 @@ namespace Controllers
     static class MessagesBus
     {
         static InfoshareDashboard.Client.Client client = new InfoshareDashboard.Client.Client("http://localhost:8080", 8080, message => messages.Add(message));
-        public static List<Message> messages = new List<Message>();
+        public static readonly List<Message> messages = new List<Message>();
     }
 
     public class MessagesController : Controller
@@ -22,8 +22,15 @@ namespace Controllers
         [HttpPost]
         public IActionResult Push([FromBody]Message message)
         {
-            MessagesBus.messages.Add(message);
-            return new EmptyResult();
+            if (message != null)
+            {
+                MessagesBus.messages.Add(message);
+                return new EmptyResult();
+            }
+            else
+            {
+                return new BadRequestResult();
+            }
         }
     }
 }
