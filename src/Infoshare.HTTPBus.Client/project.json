@@ -3,7 +3,7 @@
   "dependencies": {
     "Microsoft.Net.Http.Client": "1.0.0-beta3-10053",
     "Newtonsoft.Json": "6.0.8",
-    "InfoshareDashboard.Models": "1.0.0-*"
+    "Infoshare.HTTPBus.Models": "1.0.0-*"
   },
   "commands": {
     "run": "run"

@@ -1,8 +1,8 @@
 {
     "version": "1.0.0-*",
     "dependencies": {
-        "InfoshareDashboard.Models": "1.0.0-*",
-        "InfoshareDashboard.Client": "1.0.0-*"
+        "Infoshare.HTTPBus.Models": "1.0.0-*",
+        "Infoshare.HTTPBus.Client": "1.0.0-*"
     },
     "commands": {
         "run": "run"
