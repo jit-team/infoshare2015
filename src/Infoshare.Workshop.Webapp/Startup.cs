@@ -12,9 +12,18 @@ namespace Infoshare.Workshop.Webapp
 
         public void Configure(IApplicationBuilder app)
         {
+
             app.UseStaticFiles();
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                 name: "default",
+                 template: "{controller}/{action}/{id?}",
+                 defaults: new { controller = "Home", action = "Index" });
+            });
+
+
         }
     }
 }
