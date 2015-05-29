@@ -1,15 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <link href="~/css/sub/blank.css" asp-href-include="**/blank.css" rel="stylesheet" data-test="value" />
-    <link href="site.min.css" rel="stylesheet" data-test="value"
-          asp-fallback-href-include="**/site.css"
-          asp-fallback-test-class="fallback-test"
-          asp-fallback-test-property="visibility"
-          asp-fallback-test-value="hidden" />
-    <link asp-href-include="../*.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css" />   
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-    @RenderBody()
+    <div class="jumbotron">
+        <h1>Infoshare JIT</h1>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
 </body>
 </html>
