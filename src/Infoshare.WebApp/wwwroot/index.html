@@ -3,14 +3,34 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta content="utf-8" http-equiv="encoding">
+    <link href="Styles/main.css" rel="stylesheet">
 </head>
 <body>
-    <ul id="messages"></ul>
+    <div>
+        <div class="col-md-10 col-md-offset-1 well">
+            <div class="col-md-3"  style="text-align:center">
+                <img src="Assets/JIT_logo.png" style="height:80px; margin-top:10%" />
+            </div>
+            <div class="col-md-6" style="text-align:center">
+                <h1>Warsztaty InfoShare 2015</h1>
+                <h2>.NET rusza w świat</h2>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2 panel panel-default">
+            <div class="panel-body">
+                <div id="messages" class="col-md-10 col-md-offset-1">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="/Scripts/MessageBus.js"></script>
+    <script src="Scripts/MessageBus.js"></script>
+    <script src="Scripts/MessageFormatter.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
     <script>
         MessageBus.start(function (message) {
-            $('#messages').append('<li>' + message.Content + '</li>');
+            formatMessage(message);
         });
     </script>
 </body>
