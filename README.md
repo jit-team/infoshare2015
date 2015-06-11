@@ -4,7 +4,7 @@ Hello! We are happy you taking part in our workshop!
 
 We wish you will learn something about the future of the .NET platform. 
 
-The application we intend to write today is a messaHere ge hub. We have a simple http server setup to which you can _post_ a message using the HTTP protocol.
+The application we intend to write today is a message hub. We have a simple http server setup to which you can _post_ a message using the HTTP protocol.
 
 Here are some code snippets and commands which should be helpful during this workshop.
 
@@ -57,7 +57,7 @@ public IActionResult Index(){
 
 Instead of a `IActionResult` you can use a normal class as a return type. This will return a JSON or XML represantation of the object.
 
-#Form submittion
+#Form submission
 You can submit a form if the action takes a parameter of the object which is the model of that form. For example there is an object:
 ```
 class Person
