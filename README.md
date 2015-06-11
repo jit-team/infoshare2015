@@ -46,6 +46,36 @@ public void Configure(IApplicationBuilder app)
 ```
 
 
+#Tag helpers
+
+In beta4 to use tag helpers, you need to do the following:
+
+1. Add `"Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta4"` to dependencies in `project.json`
+2. Create a `Views/_GlobalImport.cshtml` file with content off `@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers
+3. Voila!
+
+Number 2 is specific for `beta4`, in later version that was changed.
+
+Now you can use the new ASP MVC tag helpers
+
+```
+@model Infoshare.Workshop.Webapp.Models.LoginForm
+
+<form asp-action="LoginAction">
+
+    <div class="form-group">
+        <label asp-for="Login">Name:</label>
+        <input type="text" asp-for="Login" />
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+```
+
+Take a look at the `asp-*` attributes, those are bindings which are compiled and bound from the model.
+
+
+
+
 
 
 
