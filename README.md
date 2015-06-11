@@ -45,6 +45,34 @@ public void Configure(IApplicationBuilder app)
         }
 ```
 
+#Actions
+
+You can define a simple action by
+
+```
+public IActionResult Index(){
+  return Content();
+}
+```
+
+Instead of a `IActionResult` you can use a normal class as a return type. This will return a JSON or XML represantation of the object.
+
+#Form submittion
+You can submit a form if the action takes a parameter of the object which is the model of that form. For example there is an object:
+```
+class Person
+{
+  public string Name {get;set;}
+  public string Surname {get;set;}
+}
+```
+Assuming that the form contains field which are the same as the properties of that class (`Name`, `Surname`). It should bind to such action:
+```
+public IActionResult Index(Person person){
+  return Content("Hello "+ person.name);
+}
+```
+
 
 #Tag helpers
 
@@ -54,7 +82,7 @@ In beta4 to use tag helpers, you need to do the following:
 2. Create a `Views/_GlobalImport.cshtml` file with content off `@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers
 3. Voila!
 
-Number 2 is specific for `beta4`, in later version that was changed.
+Number 2 is specific for `beta4`, in later versions that is changed.
 
 Now you can use the new ASP MVC tag helpers
 
@@ -72,10 +100,4 @@ Now you can use the new ASP MVC tag helpers
 ```
 
 Take a look at the `asp-*` attributes, those are bindings which are compiled and bound from the model.
-
-
-
-
-
-
 
