@@ -79,7 +79,7 @@ public IActionResult Index(Person person){
 In beta4 to use tag helpers, you need to do the following:
 
 1. Add `"Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta4"` to dependencies in `project.json`
-2. Create a `Views/_GlobalImport.cshtml` file with content off `@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers
+2. Create a `Views/_GlobalImport.cshtml` file with content off `@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers`
 3. Voila!
 
 Number 2 is specific for `beta4`, in later versions that is changed.
